@@ -79,16 +79,20 @@ public class MainActivity extends AppCompatActivity
   @Override
   public boolean onNavigationItemSelected(MenuItem item) {
 
+    Bundle args = new Bundle();
+
     switch (item.getItemId()) {
       case R.id.fragment_1:
-        Fragment1 fragment = new Fragment1();
-        getSupportFragmentManager().beginTransaction()
-            .add(R.id.fragment_container, fragment, fragment.getClass().getSimpleName())
-            .commit();
+        loadFragment(new Fragment1(), R.id.fragment_container, "fragment1", null);
         break;
 
       case R.id.fragment_2:
-        // TODO jump to frag 2
+        loadFragment(new Fragment2(), R.id.fragment_container, "fragment2", null);
+        break;
+
+      case R.id.fragment_2a:
+        args.putString(Fragment2.BODY_TEXT_KEY, "Here comes another one.");
+        loadFragment(new Fragment2(), R.id.fragment_container, "fragment2a", args);
         break;
     }
 
